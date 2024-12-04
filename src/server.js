@@ -16,13 +16,25 @@ const PORT = process.env.PORT || 3000;
 app.use(rateLimit);
 app.use(express.json());
 
-// CORS Configuration
-const corsOptions = {
-  origin: 'http://api.example.com',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+
+const corsOptions = (req, callback) => {
+  let corsConfig = {
+    origin: 'http://api.example.com',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  };
+  // Check if the User-Agent is Dart 
+  if (req.headers['user-agent'] === 'Dart') {
+    if (req.path === '/api/public') {
+      corsConfig = {
+        ...corsConfig,
+        origin: '*', // Allow any origin for public route
+      };
+    }
+  }
+  // Default CORS behavior for other requests
+  callback(null, corsConfig);
 };
-app.use(cors(corsOptions));
 
 // Routes
 app.use('/api', authRoutes);

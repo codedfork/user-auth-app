@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "3cf796b8-e948-4b5f-8139-615b605ffcb1",
+		"name": "user-auth-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20019188",
+		"_collection_link": "https://speeding-space-313925.postman.co/workspace/New-Team-Workspace~282bc145-b64a-47c9-87bb-03821a1e381b/collection/20019188-3cf796b8-e948-4b5f-8139-615b605ffcb1?action=share&source=collection_link&creator=20019188"
+	},
+	"item": [
+		{
+			"name": "create-user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Sourav\",\r\n    \"email\":\"ksourav8921@gmail.com\",\r\n    \"password\":\"authUser@123.\",\r\n    \"encryptedData\":{\r\n        \"cc_number\":\"1234567890123456\",\r\n        \"cvv\":\"023\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/register",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/users/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth-user",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "get-sensetive-data",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "get-all-users",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

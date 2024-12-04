@@ -14,11 +14,11 @@ exports.getUserById = async (req) => {
     }
 
     // Fetch user from the database
-    const name = await User.findById(id).select('name');
-    if (!name) {
+    const user = await User.findById(id);
+    if (!user) {
         throw { statusCode: 404, message: messages.errors.userNotFound }; // Custom error for non-existent user
     }
-    return name; // Data returned to the handler for response formatting
+    return {user:user.name}; // Data returned to the handler for response formatting
 };
 
 exports.registerUser = async (req, res) => {
