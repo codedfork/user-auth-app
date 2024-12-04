@@ -1,9 +1,9 @@
 // login.test.js
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const User = require('../src/models/User'); 
-const { login } = require('../src/controllers/userController'); 
-const messages = require('../src/lang/messages'); 
+const User = require('../models/User'); 
+const { login } = require('../controllers/userController'); 
+const messages = require('../lang/messages'); 
 
 // Mocking external dependencies
 jest.mock('bcrypt');

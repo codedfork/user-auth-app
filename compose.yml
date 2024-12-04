@@ -1,0 +1,23 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"  # Map container port 3000 to host port 3000
+    environment:
+      - PORT=3000
+      - MONGODB_URI=mongodb://mongo:27017/user-auth-app
+      - ENCRYPTION_KEY=2ecfe032dda4bd23d1bfbd205d48160313de4f9e5db9741551f5f1a0cb54518e  # Replace with your key
+      - JWT_SECRET=token@12345  # Replace with your secret
+    depends_on:
+      - mongo  # Ensure MongoDB starts first
+
+  mongo:
+    image: mongo:latest  # Use the latest MongoDB image
+    container_name: mongo-db
+    ports:
+      - "27017:27017"  # Map container port 27017 to host port 27017
+    volumes:
+      - mongo-data:/data/db  # Persist MongoDB data
+
+volumes:
+  mongo-data:  # Define the volume for MongoDB data persistence

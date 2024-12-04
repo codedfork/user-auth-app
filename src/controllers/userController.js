@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const {decrypt} = require('../utils/encryptionService');
 
-// Controller to get a user by ID
+// get a user by ID
 exports.getUserById = async (req) => {
     const { id } = req.params;
     // Validate ObjectId format
@@ -14,11 +14,11 @@ exports.getUserById = async (req) => {
     }
 
     // Fetch user from the database
-    const user = await User.findById(id);
-    if (!user) {
+    const name = await User.findById(id).select('name');
+    if (!name) {
         throw { statusCode: 404, message: messages.errors.userNotFound }; // Custom error for non-existent user
     }
-    return { name: user.name }; // Data returned to the handler for response formatting
+    return name; // Data returned to the handler for response formatting
 };
 
 exports.registerUser = async (req, res) => {
@@ -65,3 +65,14 @@ exports.registerUser = async (req, res) => {
     const decryptedData = await decrypt(user.encryptedData, user.encryptedUserKey, user.dataIv, user.keyIv);
     return decryptedData;
   };
+
+  // get all users
+exports.findAll = async (req) => {
+
+  // Fetch users from the database
+  const users = await User.find().select('-password -encryptedData -dataIv -encryptedUserKey -keyIv -__v');
+  if (!users) {
+      throw { statusCode: 404, message: messages.errors.dataNotFound }; 
+  }
+  return { users}; // Data returned to the handler for response formatting
+};

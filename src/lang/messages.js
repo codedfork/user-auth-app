@@ -9,7 +9,8 @@ module.exports = {
       invalidUserIdFormat: 'Invalid User ID format',
       invalidToken:"Invalid auth Token",
       registrationFailed: "User registration failed",
-      tooManyRequests:"Too many requests from this IP, please try again after a minute."
+      tooManyRequests:"Too many requests from this IP, please try again after a minute.",
+      dataNotFound:"Data not found."
     },
     success: {
       userRegistered: 'User registered successfully.',

@@ -16,6 +16,11 @@ router.get('/users/:id',authMiddleware, (req, res) => {
     handleRequest(req, res, userController.getUserById, messages.success.dataFetched);
   });
 
+// Get all users
+router.get('/users',authMiddleware, (req, res) => {
+    handleRequest(req, res, userController.findAll, messages.success.dataFetched);
+  });
+
 
 // Get sensetive data
 router.get('/users/sdata/:id',authMiddleware, (req, res) => {
